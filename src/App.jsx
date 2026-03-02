@@ -10,6 +10,8 @@ export default function App() {
 
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
+  const [filter, setFilter] = useState("all");
+
   useEffect(() => {
     localStorage.setItem("theme", theme);
     if (theme === "dark") {
@@ -23,12 +25,24 @@ export default function App() {
     return setTheme((prevState) => (prevState === "dark" ? "light" : "dark"));
   };
 
+  const filterExtensions = () => {
+    if (filter === "all") {
+      return extensionList
+    } else if (filter === "active") {
+      return extensionList.filter((item) => item.isActive === true)
+    } else if (filter === "inactive") {
+      return extensionList.filter((item) => item.isActive === false)
+    }
+  };
+
   return (
     <>
       <Header handleClick={handleClick} />
       <main>
-        <FilterSection />
-        <ExtensionSection extensionList={extensionList} />
+        <FilterSection setFilter={setFilter} filter={filter} />
+        <ExtensionSection
+          extensionList={filterExtensions()}
+        />
       </main>
       <Footer />
     </>
