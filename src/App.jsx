@@ -6,11 +6,17 @@ import Footer from "./components/Footer";
 import data from "./data/data.json";
 
 export default function App() {
-  const [extensionList, setExtensionList] = useState(data);
+  const [extensionList, setExtensionList] = useState(
+    JSON.parse(localStorage.getItem("extensions")) || data
+  );
 
   const [theme, setTheme] = useState(localStorage.getItem("theme") || "light");
 
   const [filter, setFilter] = useState("all");
+
+  useEffect(() => {
+    localStorage.setItem("extensions", JSON.stringify(extensionList));
+  }, [extensionList]);
 
   useEffect(() => {
     localStorage.setItem("theme", theme);

@@ -75,10 +75,13 @@ header nav,
     box-shadow 0.5s ease-in-out;
 }
 
-header,
-#root,
-main{
+#root {
   width: 90%;
+}
+
+header,
+main {
+  width: 100%;
   max-width: 1100px;
 }
 
@@ -148,7 +151,7 @@ header nav {
 #filter-section {
   display: flex;
   text-align: center;
-  margin-bottom: 4rem;
+  margin: 4rem 0;
   align-items: center;
   justify-content: space-between;
   padding: 0 0.9rem;
@@ -440,4 +443,3 @@ body.dark-theme .button-set button.selected {
   color: var(--Red-500);
   text-decoration: none;
 }
-
