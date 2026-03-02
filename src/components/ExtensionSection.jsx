@@ -1,4 +1,8 @@
-export default function ExtensionSection({ extensionList, toggleActive }) {
+export default function ExtensionSection({
+  extensionList,
+  toggleActive,
+  removeExtension,
+}) {
   const extensionMap = extensionList.map(
     ({ logo, name, description, isActive }) => {
       return (
@@ -13,14 +17,19 @@ export default function ExtensionSection({ extensionList, toggleActive }) {
             </div>
           </div>
           <div className="card-footer">
-            <button className="remove-btn">Remove</button>
+            <button
+              className="remove-btn"
+              onClick={() => removeExtension(name)}
+            >
+              Remove
+            </button>
             <div className="toggle-switch">
               <label className="slider-container">
                 <input
                   type="checkbox"
-                  className={`sr-only `}
+                  className="sr-only"
                   checked={isActive}
-                  onChange={(e) => toggleActive(name)}
+                  onChange={() => toggleActive(name)}
                   aria-label={`Toggle status for ${name}`}
                 />
                 <span className="slider"></span>

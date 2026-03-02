@@ -49,6 +49,12 @@ export default function App() {
     });
   };
 
+  const removeExtension = (extensionName) => {
+    setExtensionList(
+      extensionList.filter((item) => item.name !== extensionName),
+    );
+  };
+
   return (
     <>
       <Header handleThemeToggle={handleThemeToggle} />
@@ -57,6 +63,7 @@ export default function App() {
         <ExtensionSection
           extensionList={filterExtensions()}
           toggleActive={toggleActive}
+          removeExtension={removeExtension}
         />
       </main>
       <Footer />

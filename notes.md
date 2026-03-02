@@ -1,0 +1,3 @@
+- [ ] save loaded extensions to localstorage
+- [ ] fix styling
+- [x] add remove button
