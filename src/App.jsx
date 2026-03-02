@@ -21,27 +21,42 @@ export default function App() {
     }
   }, [theme]);
 
-  const handleClick = () => {
+  const handleThemeToggle = () => {
     return setTheme((prevState) => (prevState === "dark" ? "light" : "dark"));
   };
 
   const filterExtensions = () => {
     if (filter === "all") {
-      return extensionList
+      return extensionList;
     } else if (filter === "active") {
-      return extensionList.filter((item) => item.isActive === true)
+      return extensionList.filter((item) => item.isActive === true);
     } else if (filter === "inactive") {
-      return extensionList.filter((item) => item.isActive === false)
+      return extensionList.filter((item) => item.isActive === false);
     }
+  };
+
+  const toggleActive = (name) => {
+    setExtensionList((prevState) => {
+      return prevState.map((item) => {
+        if (item.name === name) {
+          return {
+            ...item,
+            isActive: !item.isActive,
+          };
+        }
+        return item;
+      });
+    });
   };
 
   return (
     <>
-      <Header handleClick={handleClick} />
+      <Header handleThemeToggle={handleThemeToggle} />
       <main>
         <FilterSection setFilter={setFilter} filter={filter} />
         <ExtensionSection
           extensionList={filterExtensions()}
+          toggleActive={toggleActive}
         />
       </main>
       <Footer />

@@ -1,4 +1,4 @@
-export default function ExtensionSection({ extensionList }) {
+export default function ExtensionSection({ extensionList, toggleActive }) {
   const extensionMap = extensionList.map(
     ({ logo, name, description, isActive }) => {
       return (
@@ -20,7 +20,7 @@ export default function ExtensionSection({ extensionList }) {
                   type="checkbox"
                   className={`sr-only `}
                   checked={isActive}
-                  onChange={() => {}}
+                  onChange={(e) => toggleActive(name)}
                   aria-label={`Toggle status for ${name}`}
                 />
                 <span className="slider"></span>
